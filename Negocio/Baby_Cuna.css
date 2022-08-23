@@ -1,0 +1,118 @@
+.contenedor{
+    background-color: aqua;
+    width: 90%;
+    /*max-width: 1000px;*/
+    border: 3px solid black;
+    margin: 10px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr;   
+    
+}
+h1{
+    font-size: 3.5em;
+    font-weight: bold;
+    /*font-size: 68px;*/
+    font-family: "Lucida Handwriting";
+    text-shadow: 0 1px 0 #ccc, 
+                 0 2px 0 #c9c9c9,
+                 0 3px 0 #bbb,
+                 0 4px 0 #b9b9b9,
+                 0 5px 0 #aaa,
+                 0 6px 1px rgba(0,0,0,.1),
+                 0 0 5px rgba(0,0,0,.1),
+                 0 1px 3px rgba(0,0,0,.3),
+                 0 3px 5px rgba(0,0,0,.2),
+                 0 5px 10px rgba(0,0,0,.25),
+                 0 10px 10px rgba(0,0,0,.2),
+                 0 20px 20px rgba(0,0,0,.15);
+    color: rgb(39, 0, 180);
+    text-align: center;
+}
+h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    /*font-size: 68px;*/
+    font-family: "Arial";
+    text-shadow: 0 1px 0 #ccc, 
+                 0 2px 0 #c9c9c9,
+                 0 3px 0 #bbb,
+                 0 4px 0 #b9b9b9,
+                 0 5px 0 #aaa,
+                 0 6px 1px rgba(0,0,0,.1),
+                 0 0 5px rgba(0,0,0,.1),
+                 0 1px 3px rgba(0,0,0,.3),
+                 0 3px 5px rgba(0,0,0,.2),
+                 0 5px 10px rgba(0,0,0,.25),
+                 0 10px 10px rgba(0,0,0,.2),
+                 0 20px 20px rgba(0,0,0,.15);
+    color: rgb(39, 0, 180);
+    text-align: center;
+}
+div{
+    background-color: blanchedalmond;
+    
+}
+.header{
+    grid-column-start: 1;
+    grid-column-end: -1;
+    display: flex;
+    justify-content: space-between;
+
+}
+.header img{
+    width: 7%;
+    height: 50%;
+    border-radius: 10%;
+    margin: 5px;
+}
+.titulo{
+    display: block;
+}
+.navegador{
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+.navbar{
+    width: 100%;
+    height: auto;
+    background-color: rgb(232, 239, 10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center; 
+    font-weight: bold;
+    text-decoration-style: none;
+    position: sticky;
+    top: 0;
+}
+.contenido{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: justify;
+}
+.contenido img{
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+    margin: 5px;
+}
+.content{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.sidebar{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+.sidebar2{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.footer{
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
