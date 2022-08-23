@@ -54,7 +54,7 @@ Aviato is the ultimate e-commerce front-end solution based on Bootstrap 3. Along
 <!-- download -->
 ## Download And installation
 
-Download this template from [Github](https://github.com/themefisher/aviato/archive/main.zip)
+Downloads this template from [Github](https://github.com/themefisher/aviato/archive/main.zip)
 
 <!-- installation -->
 ### Basic Usages
