@@ -6,7 +6,7 @@
  *  Made by István Ujj-Mészáros
  *  Under Apache License v2.0 License
  */
-(function($) {
+(function ($) {
   'use strict';
 
   var _currentSpinnerId = 0;
@@ -16,25 +16,18 @@
   }
 
   function _scopeEventNames(names, id) {
-    return $.map(names, function(name) {
+    return $.map(names, function (name) {
       return _scopedEventName(name, id);
     });
   }
 
-  $.fn.TouchSpin = function(options) {
+  $.fn.TouchSpin = function (options) {
 
     if (options === 'destroy') {
-      this.each(function() {
+      this.each(function () {
         var originalinput = $(this),
             originalinput_data = originalinput.data();
-        $(document).off(_scopeEventNames([
-          'mouseup',
-          'touchend',
-          'touchcancel',
-          'mousemove',
-          'touchmove',
-          'scroll',
-          'scrollstart'], originalinput_data.spinnerid).join(' '));
+        $(document).off(_scopeEventNames(['mouseup', 'touchend', 'touchcancel', 'mousemove', 'touchmove', 'scroll', 'scrollstart'], originalinput_data.spinnerid).join(' '));
       });
       return;
     }
@@ -93,7 +86,7 @@
       buttonup_txt: 'button-up-txt'
     };
 
-    return this.each(function() {
+    return this.each(function () {
 
       var settings,
           originalinput = $(this),
@@ -110,7 +103,6 @@
 
       init();
 
-
       function init() {
         if (originalinput.data('alreadyinitialized')) {
           return;
@@ -119,7 +111,6 @@
         originalinput.data('alreadyinitialized', true);
         _currentSpinnerId += 1;
         originalinput.data('spinnerid', _currentSpinnerId);
-
 
         if (!originalinput.is('input')) {
           console.log('Must be an input.');
@@ -161,7 +152,7 @@
 
       function _parseAttributes() {
         var data = {};
-        $.each(attributeMap, function(key, value) {
+        $.each(attributeMap, function (key, value) {
           var attrName = 'bts-' + value + '';
           if (originalinput.is('[data-' + attrName + ']')) {
             data[key] = originalinput.data(attrName);
@@ -195,8 +186,7 @@
 
         if (parentelement.hasClass('input-group')) {
           _advanceInputGroup(parentelement);
-        }
-        else {
+        } else {
           _buildInputGroup();
         }
       }
@@ -215,8 +205,7 @@
         if (prev.hasClass('input-group-btn')) {
           downhtml = '<button class="' + settings.buttondown_class + ' bootstrap-touchspin-down" type="button">' + settings.buttondown_txt + '</button>';
           prev.append(downhtml);
-        }
-        else {
+        } else {
           downhtml = '<span class="input-group-btn"><button class="' + settings.buttondown_class + ' bootstrap-touchspin-down" type="button">' + settings.buttondown_txt + '</button></span>';
           $(downhtml).insertBefore(originalinput);
         }
@@ -224,8 +213,7 @@
         if (next.hasClass('input-group-btn')) {
           uphtml = '<button class="' + settings.buttonup_class + ' bootstrap-touchspin-up" type="button">' + settings.buttonup_txt + '</button>';
           next.prepend(uphtml);
-        }
-        else {
+        } else {
           uphtml = '<span class="input-group-btn"><button class="' + settings.buttonup_class + ' bootstrap-touchspin-up" type="button">' + settings.buttonup_txt + '</button></span>';
           $(uphtml).insertAfter(originalinput);
         }
@@ -241,8 +229,7 @@
 
         if (settings.verticalbuttons) {
           html = '<div class="input-group bootstrap-touchspin"><span class="input-group-addon bootstrap-touchspin-prefix">' + settings.prefix + '</span><span class="input-group-addon bootstrap-touchspin-postfix">' + settings.postfix + '</span><span class="input-group-btn-vertical"><button class="' + settings.buttondown_class + ' bootstrap-touchspin-up" type="button"><i class="' + settings.verticalupclass + '"></i></button><button class="' + settings.buttonup_class + ' bootstrap-touchspin-down" type="button"><i class="' + settings.verticaldownclass + '"></i></button></span></div>';
-        }
-        else {
+        } else {
           html = '<div class="input-group bootstrap-touchspin"><span class="input-group-btn"><button class="' + settings.buttondown_class + ' bootstrap-touchspin-down" type="button">' + settings.buttondown_txt + '</button></span><span class="input-group-addon bootstrap-touchspin-prefix">' + settings.prefix + '</span><span class="input-group-addon bootstrap-touchspin-postfix">' + settings.postfix + '</span><span class="input-group-btn"><button class="' + settings.buttonup_class + ' bootstrap-touchspin-up" type="button">' + settings.buttonup_txt + '</button></span></div>';
         }
 
@@ -252,8 +239,7 @@
 
         if (originalinput.hasClass('input-sm')) {
           container.addClass('input-group-sm');
-        }
-        else if (originalinput.hasClass('input-lg')) {
+        } else if (originalinput.hasClass('input-lg')) {
           container.addClass('input-group-lg');
         }
       }
@@ -279,7 +265,7 @@
       }
 
       function _bindEvents() {
-        originalinput.on('keydown', function(ev) {
+        originalinput.on('keydown', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 38) {
@@ -288,8 +274,7 @@
               startUpSpin();
             }
             ev.preventDefault();
-          }
-          else if (code === 40) {
+          } else if (code === 40) {
             if (spinning !== 'down') {
               downOnce();
               startDownSpin();
@@ -298,22 +283,21 @@
           }
         });
 
-        originalinput.on('keyup', function(ev) {
+        originalinput.on('keyup', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 38) {
             stopSpin();
-          }
-          else if (code === 40) {
+          } else if (code === 40) {
             stopSpin();
           }
         });
 
-        originalinput.on('blur', function() {
+        originalinput.on('blur', function () {
           _checkValue();
         });
 
-        elements.down.on('keydown', function(ev) {
+        elements.down.on('keydown', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 32 || code === 13) {
@@ -325,7 +309,7 @@
           }
         });
 
-        elements.down.on('keyup', function(ev) {
+        elements.down.on('keyup', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 32 || code === 13) {
@@ -333,7 +317,7 @@
           }
         });
 
-        elements.up.on('keydown', function(ev) {
+        elements.up.on('keydown', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 32 || code === 13) {
@@ -345,7 +329,7 @@
           }
         });
 
-        elements.up.on('keyup', function(ev) {
+        elements.up.on('keyup', function (ev) {
           var code = ev.keyCode || ev.which;
 
           if (code === 32 || code === 13) {
@@ -353,8 +337,8 @@
           }
         });
 
-        elements.down.on('mousedown.touchspin', function(ev) {
-          elements.down.off('touchstart.touchspin');  // android 4 workaround
+        elements.down.on('mousedown.touchspin', function (ev) {
+          elements.down.off('touchstart.touchspin'); // android 4 workaround
 
           if (originalinput.is(':disabled')) {
             return;
@@ -367,8 +351,8 @@
           ev.stopPropagation();
         });
 
-        elements.down.on('touchstart.touchspin', function(ev) {
-          elements.down.off('mousedown.touchspin');  // android 4 workaround
+        elements.down.on('touchstart.touchspin', function (ev) {
+          elements.down.off('mousedown.touchspin'); // android 4 workaround
 
           if (originalinput.is(':disabled')) {
             return;
@@ -381,8 +365,8 @@
           ev.stopPropagation();
         });
 
-        elements.up.on('mousedown.touchspin', function(ev) {
-          elements.up.off('touchstart.touchspin');  // android 4 workaround
+        elements.up.on('mousedown.touchspin', function (ev) {
+          elements.up.off('touchstart.touchspin'); // android 4 workaround
 
           if (originalinput.is(':disabled')) {
             return;
@@ -395,8 +379,8 @@
           ev.stopPropagation();
         });
 
-        elements.up.on('touchstart.touchspin', function(ev) {
-          elements.up.off('mousedown.touchspin');  // android 4 workaround
+        elements.up.on('touchstart.touchspin', function (ev) {
+          elements.up.off('mousedown.touchspin'); // android 4 workaround
 
           if (originalinput.is(':disabled')) {
             return;
@@ -409,7 +393,7 @@
           ev.stopPropagation();
         });
 
-        elements.up.on('mouseout touchleave touchend touchcancel', function(ev) {
+        elements.up.on('mouseout touchleave touchend touchcancel', function (ev) {
           if (!spinning) {
             return;
           }
@@ -418,7 +402,7 @@
           stopSpin();
         });
 
-        elements.down.on('mouseout touchleave touchend touchcancel', function(ev) {
+        elements.down.on('mouseout touchleave touchend touchcancel', function (ev) {
           if (!spinning) {
             return;
           }
@@ -427,7 +411,7 @@
           stopSpin();
         });
 
-        elements.down.on('mousemove touchmove', function(ev) {
+        elements.down.on('mousemove touchmove', function (ev) {
           if (!spinning) {
             return;
           }
@@ -436,7 +420,7 @@
           ev.preventDefault();
         });
 
-        elements.up.on('mousemove touchmove', function(ev) {
+        elements.up.on('mousemove touchmove', function (ev) {
           if (!spinning) {
             return;
           }
@@ -445,7 +429,7 @@
           ev.preventDefault();
         });
 
-        $(document).on(_scopeEventNames(['mouseup', 'touchend', 'touchcancel'], _currentSpinnerId).join(' '), function(ev) {
+        $(document).on(_scopeEventNames(['mouseup', 'touchend', 'touchcancel'], _currentSpinnerId).join(' '), function (ev) {
           if (!spinning) {
             return;
           }
@@ -454,7 +438,7 @@
           stopSpin();
         });
 
-        $(document).on(_scopeEventNames(['mousemove', 'touchmove', 'scroll', 'scrollstart'], _currentSpinnerId).join(' '), function(ev) {
+        $(document).on(_scopeEventNames(['mousemove', 'touchmove', 'scroll', 'scrollstart'], _currentSpinnerId).join(' '), function (ev) {
           if (!spinning) {
             return;
           }
@@ -463,7 +447,7 @@
           stopSpin();
         });
 
-        originalinput.on('mousewheel DOMMouseScroll', function(ev) {
+        originalinput.on('mousewheel DOMMouseScroll', function (ev) {
           if (!settings.mousewheel || !originalinput.is(':focus')) {
             return;
           }
@@ -475,37 +459,36 @@
 
           if (delta < 0) {
             downOnce();
-          }
-          else {
+          } else {
             upOnce();
           }
         });
       }
 
       function _bindEventsInterface() {
-        originalinput.on('touchspin.uponce', function() {
+        originalinput.on('touchspin.uponce', function () {
           stopSpin();
           upOnce();
         });
 
-        originalinput.on('touchspin.downonce', function() {
+        originalinput.on('touchspin.downonce', function () {
           stopSpin();
           downOnce();
         });
 
-        originalinput.on('touchspin.startupspin', function() {
+        originalinput.on('touchspin.startupspin', function () {
           startUpSpin();
         });
 
-        originalinput.on('touchspin.startdownspin', function() {
+        originalinput.on('touchspin.startdownspin', function () {
           startDownSpin();
         });
 
-        originalinput.on('touchspin.stopspin', function() {
+        originalinput.on('touchspin.stopspin', function () {
           stopSpin();
         });
 
-        originalinput.on('touchspin.updatesettings', function(e, newsettings) {
+        originalinput.on('touchspin.updatesettings', function (e, newsettings) {
           changeSettings(newsettings);
         });
       }
@@ -545,8 +528,7 @@
         if (isNaN(parsedval)) {
           if (settings.replacementval !== '') {
             parsedval = settings.replacementval;
-          }
-          else {
+          } else {
             parsedval = 0;
           }
         }
@@ -576,14 +558,13 @@
       function _getBoostedStep() {
         if (!settings.booster) {
           return settings.step;
-        }
-        else {
+        } else {
           var boosted = Math.pow(2, Math.floor(spincount / settings.boostat)) * settings.step;
 
           if (settings.maxboostedstep) {
             if (boosted > settings.maxboostedstep) {
               boosted = settings.maxboostedstep;
-              value = Math.round((value / boosted)) * boosted;
+              value = Math.round(value / boosted) * boosted;
             }
           }
 
@@ -652,8 +633,8 @@
         originalinput.trigger('touchspin.on.startspin');
         originalinput.trigger('touchspin.on.startdownspin');
 
-        downDelayTimeout = setTimeout(function() {
-          downSpinTimer = setInterval(function() {
+        downDelayTimeout = setTimeout(function () {
+          downSpinTimer = setInterval(function () {
             spincount++;
             downOnce();
           }, settings.stepinterval);
@@ -669,8 +650,8 @@
         originalinput.trigger('touchspin.on.startspin');
         originalinput.trigger('touchspin.on.startupspin');
 
-        upDelayTimeout = setTimeout(function() {
-          upSpinTimer = setInterval(function() {
+        upDelayTimeout = setTimeout(function () {
+          upSpinTimer = setInterval(function () {
             spincount++;
             upOnce();
           }, settings.stepinterval);
@@ -697,9 +678,6 @@
         spincount = 0;
         spinning = false;
       }
-
     });
-
   };
-
 })(jQuery);
